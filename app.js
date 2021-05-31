@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
 const targets = require('./targets.json')
+const generateTrashTalk = require('./generate_trash_talk')
 const port = 3000
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
@@ -17,8 +18,11 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 app.post('/', (req, res) => {
-  console.log('req.body', req.body)
-  res.redirect('/')
+  const targetID = Object.keys(req.body)[0]
+  // target[0].task[0] phrase[0] 數字之後以隨機數取代
+  // 放入一個陣列，找到陣列中id相符的元素
+  const trashTalk = generateTrashTalk(targetID)
+  res.render('index', { trashTalk })
 })
 
 app.listen(port, () => {
