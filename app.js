@@ -18,9 +18,8 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 app.post('/', (req, res) => {
-  const targetID = Object.keys(req.body)[0]
-  // target[0].task[0] phrase[0] 數字之後以隨機數取代
-  // 放入一個陣列，找到陣列中id相符的元素
+  const targetID = req.body.target
+  // Generate a trash talk for a target based on it's id
   const trashTalk = generateTrashTalk(targetID)
   res.render('index', { trashTalk })
 })
