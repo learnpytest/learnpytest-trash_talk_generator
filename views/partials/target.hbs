@@ -1,14 +1,15 @@
-{{!-- cards for targets --}}
+{{!-- targets template to display cards and textbox --}}
 <form action="/"
       method="POST">
   <div class="card-deck">
+    {{!-- this will display all cards for targets --}}
     {{#each partials.targets}}
-    <div class="col-4 mb-2">
-      <div class="card text-center justify-content-center align-items-center h-100">
-        <img class="card-img-top mb-3 justify-content-center align-items-center text-center"
-             src="{{image}}"
-             alt="poster">
-        <div class="card-body px-2">
+    <div class="col-12 col-md-6 col-lg-4 mb-2">
+      <div class="card text-center h-100 p-3">
+        <div class="h-100"><img class="card-img-top"
+               src="{{image}}"
+               alt="poster"></div>
+        <div class="card-body px-2 pt-3 pb-0">
           <div class="form-check">
             <input class="form-check-input"
                    type="radio"
@@ -26,20 +27,25 @@
       </div>
     </div>
     {{/each}}
+    {{!-- this will display all cards for targets --}}
   </div>
 
+  {{!-- textbox --}}
   <div class="row feedback-wrapper mt-4 mx-0">
     <div class="col-2 mx-auto px-3 px-0 mx-0">
       <button class="btn btn-success"
               type="submit">產生幹話</button>
     </div>
-    <div class="col-10 mx-auto ml-0 px-0"
+    <div class="col-10 mx-auto pl-0 pr-3 pb-3"
          style="height: 100px;">
       <div class="card w-100 h-100">
         <div class="card-body">
-          <p class="card-text">{{trashTalk}}</p>
+          {{#if trashTalk}}
+          <p class="card-text alert alert-warning text-dark font-weight-bold">{{trashTalk}}</p>
+          {{/if}}
         </div>
       </div>
     </div>
   </div>
+  {{!-- textbox --}}
 </form>
