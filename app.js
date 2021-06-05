@@ -1,11 +1,13 @@
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
+const helpers = require('handlebars-helpers')
 const targets = require('./targets.json')
 const generateTrashTalk = require('./generate_trash_talk')
 const port = 3000
+let isSelected = {}
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: { isdefined: function (value) { return isSelected[value] !== undefined } } }))
 
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 app.use(express.urlencoded({ extended: true }))
@@ -14,8 +16,9 @@ app.get('/', (req, res) => {
   if (!app.locals.partials) {
     app.locals.partials = {}
   }
-  app.locals.partials.targets = []
-  app.locals.partials.targets.push(...targets.results)
+  app.locals.partials.targets = targets.results
+  // reset selected option and then render view page
+  isSelected = {}
   return res.render('index')
 })
 app.post('/', (req, res) => {
@@ -23,13 +26,7 @@ app.post('/', (req, res) => {
   // Generate a trash talk for a target based on it's id
   const trashTalk = generateTrashTalk(id)
   // this will reserve the option that was chosed by user last turn
-  const targetList = app.locals.partials.targets.map(target => {
-    if (target.id.toString() === id) {
-      target.checked = true
-    } else {
-      target.checked = false
-    }
-  })
+  isSelected[id] = true
   return res.render('index', { trashTalk })
 })
 

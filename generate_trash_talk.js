@@ -4,6 +4,8 @@ function sample(arr) {
 }
 
 function generateTrashTalk(id) {
+  //error notice when user does not choose any of option
+  if (!id) return 'Error: Please select at least one character!'
   // import task and phrase which will be selected and used to generate trash talk for specific target character
   let trashTalk = ''
   const targets = require('./targets.json')

@@ -17,7 +17,8 @@
                    value="{{id}}"
                    id="{{character_en}}"
                    {{#if
-                   checked}}checked{{/if}}>
+                   (isdefined
+                   id)}}checked{{/if}}>
             <label class="form-check-label"
                    for="{{character_en}}">{{character}}
             </label>
@@ -26,6 +27,7 @@
         </div>
       </div>
     </div>
+
     {{/each}}
     {{!-- this will display all cards for targets --}}
   </div>
