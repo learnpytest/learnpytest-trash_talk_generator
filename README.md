@@ -34,11 +34,11 @@ $ npm run dev
 	- task: the specific task based on different target
 	- phrase: random trash talk phrase for different target and task
 
-- Using Bootstrap
+- Using Bootstrap and RWD
 
 - User experience
-	- Keep the option that is selected by user as default value so that user does not need to click the save option over again
+	- Keep the option that is selected by user as default value so that user does not need to click the same option over again
 	- Error/exception handling
 		- You will see error message pops up if you click "Generate Trash Talk" button without selecting any target first
 
-- The app has scalabilities to add more targets, task and phrase
+- The app has scalabilities to add more targets, task and phrase by editing /targets.json and /phrases.json respectively
