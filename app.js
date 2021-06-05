@@ -6,7 +6,7 @@ const targets = require('./targets.json')
 const generateTrashTalk = require('./generate_trash_talk')
 const port = 3000
 let isSelected = {}
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: { isdefined: function (value) { return isSelected[value] !== undefined } } }))
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: { isdefined: function (value) { return isSelected[value] } } }))
 
 app.set('view engine', 'hbs')
 
